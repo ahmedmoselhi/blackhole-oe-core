@@ -1,0 +1,31 @@
+[submodule "openembedded-core"]
+	path = openembedded-core
+	url = git://git.openembedded.org/openembedded-core
+	ignore = dirty
+[submodule "meta-openembedded"]
+	path = meta-openembedded
+	url = git://git.openembedded.org/meta-openembedded
+	ignore = dirty
+[submodule "bitbake"]
+	path = bitbake
+	url = git://git.openembedded.org/bitbake
+	ignore = dirty
+[submodule "meta-openpli/recipes-openpli/e2openplugins"]
+	path = meta-openpli/recipes-openpli/e2openplugins
+	url = git://github.com/E2OpenPlugins/e2openplugins.git
+	ignore = dirty
+[submodule "meta-formuler"]
+	path = meta-formuler
+	url = https://github.com/formuler/meta-formuler.git
+[submodule "meta-hd"]
+	path = meta-hd
+	url = https://github.com/HD-Digital/meta-hd.git
+[submodule "meta-xtrend"]
+	path = meta-xtrend
+	url = https://github.com/Xtrend-Official/meta-xtrend.git
+[submodule "meta-vuplus"]
+	path = meta-vuplus
+	url = http://github.com/vu-plus/meta-vuplus.git
+[submodule "meta-xp"]
+	path = meta-xp
+	url = https://github.com/XP-Master/meta-xp.git
