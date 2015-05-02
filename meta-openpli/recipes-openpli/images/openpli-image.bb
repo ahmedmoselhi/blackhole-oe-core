@@ -16,7 +16,7 @@ IMAGE_INSTALL = " \
 	kernel-params \
 	modutils-loadscript \
 	nfs-utils-client \
-	openpli-bootlogo \
+	blackhole-bootlogo \
 	opkg \
 	packagegroup-base \
 	packagegroup-core-boot \

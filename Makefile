@@ -22,6 +22,7 @@ BBLAYERS ?= \
 	$(CURDIR)/meta-openembedded/meta-networking \
 	$(CURDIR)/meta-openembedded/meta-python \
 	$(CURDIR)/openembedded-core/meta \
+	$(CURDIR)/meta-blackhole \
 	$(CURDIR)/meta-openpli \
 	$(CURDIR)/meta-dream \
 	$(CURDIR)/meta-vuplus \
@@ -63,11 +64,11 @@ all: init
 	@echo
 	@echo " cd $(BUILD_DIR)"
 	@echo " source env.source"
-	@echo " MACHINE=... bitbake openpli-enigma2-image"
+	@echo " MACHINE=... bitbake openblackhole-image"
 	@echo
 	@echo "	or, if you want to build not just the image, but the optional packages in the feed as well:"
 	@echo
-	@echo " MACHINE=... bitbake openpli-enigma2-feed"
+	@echo " MACHINE=... bitbake openblackhole-feed"
 	@echo
 
 $(BBLAYERS):
@@ -79,7 +80,7 @@ init: $(BBLAYERS) $(CONFFILES)
 
 image: init
 	@echo 'Building image for $(MACHINE)'
-	@. $(TOPDIR)/env.source && cd $(TOPDIR) && bitbake openpli-enigma2-image
+	@. $(TOPDIR)/env.source && cd $(TOPDIR) && bitbake openblackhole-image
 
 update:
 	@echo 'Updating Git repositories...'
@@ -156,7 +157,7 @@ $(CURDIR)/site.conf:
 	@echo 'PARALLEL_MAKE = "$(PARALLEL_MAKE)"' >> $@
 	@echo 'BUILD_OPTIMIZATION = "-march=native -O2 -pipe"' >> $@
 	@echo 'DL_DIR = "$(DL_DIR)"' >> $@
-	@echo 'INHERIT += "rm_work"' >> $@
+#	@echo 'INHERIT += "rm_work"' >> $@
 
 BBLAYERS_CONF_HASH := $(call hash, \
 	'BBLAYERS_CONF_VERSION = "0"' \
