@@ -29,7 +29,6 @@ RDEPENDS_${PN} = " \
 	"
 
 RRECOMMENDS_${PN} = " \
-	enigma2-plugin-skins-pli-hd \
 	gst-plugin-subsink \
 	glib-networking \
 	${GST_BASE_RDEPS} \
