@@ -68,6 +68,8 @@ ENIGMA2_PLUGINS = " \
 
 IMAGE_INSTALL += " \
 	aio-grab \
+	blackhole-base \
+	blackholesocker \
 	mc \
 	enigma2 \
 	libavahi-client \
