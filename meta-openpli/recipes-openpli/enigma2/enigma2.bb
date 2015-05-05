@@ -167,7 +167,7 @@ inherit autotools pkgconfig
 
 PACKAGES =+ "enigma2-fonts"
 PV_enigma2-fonts = "2015.02.06"
-PR_enigma2-fonts = "r0"
+PR_enigma2-fonts = "r1"
 PKGV_enigma2-fonts = "${PV_enigma2-fonts}"
 PKGR_enigma2-fonts = "${PR_enigma2-fonts}"
 FILES_enigma2-fonts = "${datadir}/fonts"
@@ -236,6 +236,17 @@ addtask openpli_branding after do_unpack before do_configure
 do_install_append() {
 	install -d ${D}/usr/share/keymaps
 	find ${D}/usr/lib/enigma2/python/ -name '*.pyc' -exec rm {} \;
+	
+	if [ -d ${WORKDIR}/skindefault ]; then
+		rm -rf {D}/usr/share/enigma2
+		install -d ${D}/usr/share/enigma2
+		rm -rf ${D}/usr/share/enigma2/skin_default
+		mv -f ${WORKDIR}/skindefault/usr/share/enigma2/* ${D}/usr/share/enigma2
+	fi
+	if [ -d ${WORKDIR}/skindefault/usr/share/fonts ]; then
+		install -d ${D}/usr/share/fonts
+		cp -f ${WORKDIR}/skindefault/usr/share/fonts/* ${D}/usr/share/fonts
+	fi
 }
 
 python populate_packages_prepend() {
