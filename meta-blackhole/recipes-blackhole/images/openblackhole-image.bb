@@ -73,6 +73,8 @@ IMAGE_INSTALL += " \
 	blackhole-base \
 	blackholesocker \
 	mc \
+	openvpn \
+	parted \
 	enigma2 \
 	libavahi-client \
 	settings-autorestore \
