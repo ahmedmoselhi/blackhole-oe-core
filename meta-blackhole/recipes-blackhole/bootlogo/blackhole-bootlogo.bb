@@ -38,7 +38,7 @@ do_install() {
 do_install_append_vuuno() {
 	install -d ${D}/boot
 	install -m 0755 ${S}/splash_cfe_auto.bin ${D}/boot/splash_cfe_auto.bin
-	}
+}
 
 do_install_append_vuultimo() {
 	install -d ${D}/boot

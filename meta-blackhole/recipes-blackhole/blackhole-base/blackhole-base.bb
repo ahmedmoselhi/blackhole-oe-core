@@ -12,7 +12,7 @@ SRC_URI = "file://Ncam_Ci.sh file://StartBhCam file://Delete_all_Crashlogs.sh fi
 	file://delite.key file://server.crt file://server.key \
 	file://Netstat.sh file://Uptime.sh file://inadyn file://inadyn_script.sh"
 
-PR = "r3"
+PR = "r4"
 
 FILES_${PN} = "/"
 
@@ -26,6 +26,7 @@ do_install() {
 
 	mkdir -p ${D}/usr/camscript
 	mkdir -p ${D}/usr/script
+	mkdir -p ${D}/usr/uninstall
 
 	install -d ${D}/etc
 	install -m 0644 ${WORKDIR}/bpmachine ${D}/etc/bpmachine
