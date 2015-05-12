@@ -57,8 +57,8 @@ ENIGMA2_PLUGINS = " \
 	enigma2-plugin-systemplugins-autoresolution \
   	enigma2-plugin-systemplugins-commoninterfaceassignment \
 	\
-	${@base_conditional("MACHINE", "vusolose", "pau", "", d)} \
-  	${@base_conditional("MACHINE", "vuzero", "pau", "", d)} \
+	${@base_conditional("MACHINE", "vusolose", "vuplus-pau", "", d)} \
+  	${@base_conditional("MACHINE", "vuzero", "vuplus-pau", "", d)} \
 	enigma2-plugin-systemplugins-osd3dsetup \
 	enigma2-plugin-systemplugins-hdmicec \
 	enigma2-plugin-systemplugins-osdpositionsetup \
