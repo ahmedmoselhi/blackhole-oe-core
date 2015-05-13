@@ -68,6 +68,7 @@ ENIGMA2_PLUGINS = " \
 	${@base_contains("MACHINE_FEATURES", "xbmc", "enigma2-plugin-extensions-xbmc", "", d)} \
 	${@base_conditional("MACHINE", "vusolose", "vuplus-pau", "", d)} \
   	${@base_conditional("MACHINE", "vuzero", "vuplus-pau", "", d)} \
+  	${@base_contains("MACHINE_FEATURES", "hbbtv", "enigma2-plugin-extensions-hbbtv", "", d)} \
 	"
 
 
