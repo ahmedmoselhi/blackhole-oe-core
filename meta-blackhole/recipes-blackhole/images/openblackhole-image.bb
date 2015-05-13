@@ -61,14 +61,14 @@ ENIGMA2_PLUGINS = " \
 	enigma2-plugin-systemplugins-osdpositionsetup \
 	enigma2-plugin-systemplugins-wirelesslan \
 	${@base_contains("MACHINE_FEATURES", "dvb-c", "enigma2-plugin-systemplugins-cablescan" , "", d)} \
-	${@base_contains("MACHINE_FEATURES", "hbbtv", "enigma2-plugin-extensions-hbbtv", "", d)} \
 	${@base_contains("MACHINE_FEATURES", "uianimation", "enigma2-plugin-systemplugins-animationsetup" , "", d)} \
-	\
 	${@base_contains("MACHINE_FEATURES", "blindscan-dvbs", "enigma2-plugin-systemplugins-vuplusblindscan vuplus-blindscan-utils", "", d)} \
 	${@base_contains("MACHINE_FEATURES", "xbmc", "enigma2-plugin-extensions-xbmc", "", d)} \
-	${@base_conditional("MACHINE", "vusolose", "vuplus-pau", "", d)} \
-  	${@base_conditional("MACHINE", "vuzero", "vuplus-pau", "", d)} \
-  	${@base_contains("MACHINE_FEATURES", "hbbtv", "enigma2-plugin-extensions-hbbtv", "", d)} \
+	\
+	${@base_conditional("MACHINE", "vusolo2", "enigma2-plugin-extensions-hbbtv", "", d)} \
+	${@base_conditional("MACHINE", "vuduo2", "enigma2-plugin-extensions-hbbtv", "", d)} \
+	${@base_conditional("MACHINE", "vusolose", "vuplus-pau enigma2-plugin-extensions-hbbtv", "", d)} \
+  	${@base_conditional("MACHINE", "vuzero", "vuplus-pau enigma2-plugin-extensions-hbbtv", "", d)} \
 	"
 
 
