@@ -67,8 +67,8 @@ ENIGMA2_PLUGINS = " \
 	\
 	${@base_conditional("MACHINE", "vusolo2", "enigma2-plugin-extensions-hbbtv", "", d)} \
 	${@base_conditional("MACHINE", "vuduo2", "enigma2-plugin-extensions-hbbtv", "", d)} \
-	${@base_conditional("MACHINE", "vusolose", "vuplus-pau enigma2-plugin-extensions-hbbtv", "", d)} \
-  	${@base_conditional("MACHINE", "vuzero", "vuplus-pau enigma2-plugin-extensions-hbbtv", "", d)} \
+	${@base_conditional("MACHINE", "vusolose", "enigma2-plugin-extensions-hbbtv", "", d)} \
+  	${@base_conditional("MACHINE", "vuzero", "enigma2-plugin-extensions-hbbtv", "", d)} \
 	"
 
 

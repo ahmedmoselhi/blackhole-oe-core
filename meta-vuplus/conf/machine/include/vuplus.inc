@@ -12,6 +12,7 @@ DVBPROVIDER = "kernel"
 
 MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS = "\
     kernel-module-cdfs \
+    vuplus-tuner-turbo \
     "
 
 MACHINE_EXTRA_RRECOMMENDS = " \
