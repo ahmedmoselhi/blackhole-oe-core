@@ -18,13 +18,14 @@ KERNEL_WIFI_DRIVERS = " \
 	kernel-module-rtl8187 \
 	kernel-module-zd1211rw \
 	"
-
+#TODO: fix rtl8192cu
 EXTRA_KERNEL_WIFI_DRIVERS = " \
 	firmware-rtl8192cu \
 	\
 	kernel-module-r8188eu \
 	kernel-module-rtl8192cu \
 	"
+#TODO: fix rtl8192cu
 
 EXTERNAL_WIFI_DRIVERS = " \
 	firmware-rtl8192cu \
@@ -70,7 +71,20 @@ ENIGMA2_PLUGINS = " \
 	${@base_conditional("MACHINE", "vusolose", "enigma2-plugin-extensions-hbbtv", "", d)} \
   	${@base_conditional("MACHINE", "vuzero", "enigma2-plugin-extensions-hbbtv", "", d)} \
 	"
-
+DVB_USB_DRIVERS = " \
+	enigma2-plugin-drivers-dvb-usb-dib0700 \
+	enigma2-plugin-drivers-dvb-usb-af9015 \
+	enigma2-plugin-drivers-dvb-usb-af9035 \
+	enigma2-plugin-drivers-dvb-usb-siano \
+	enigma2-plugin-drivers-dvb-usb-em28xx \
+	enigma2-plugin-drivers-dvb-usb-dw2102 \
+	enigma2-plugin-drivers-dvb-usb-as102 \
+	enigma2-plugin-drivers-dvb-usb-it913x \
+	enigma2-plugin-drivers-dvb-usb-pctv452e \
+	enigma2-plugin-drivers-dvb-usb-dtt200u \
+	enigma2-plugin-drivers-dvb-usb-rtl2832 \
+	kernel-module-dvb-usb-v2 \
+	"
 
 IMAGE_INSTALL += " \
 	aio-grab \
@@ -90,10 +104,7 @@ IMAGE_INSTALL += " \
 	${@base_contains("MACHINE_FEATURES", "transcoding", "streamproxy", "", d)} \
 	${@base_contains('MACHINE_FEATURES', 'ctrlrc', "enigma2-plugin-systemplugins-remotecontrolcode", "", d)} \
 	${KERNEL_WIFI_DRIVERS} \
-	${EXTRA_KERNEL_WIFI_DRIVERS} \
-	${EXTERNAL_WIFI_DRIVERS} \
-	dvb-usb-drivers-meta \
-	kernel-module-dvb-usb-v2 \
+	${DVB_USB_DRIVERS} \
 	\
 	${@base_contains('MACHINE_FEATURES', 'dvd', 'cdfs cdtextinfo kernel-module-isofs kernel-module-udf', '', d)} \
 	python-argparse \
