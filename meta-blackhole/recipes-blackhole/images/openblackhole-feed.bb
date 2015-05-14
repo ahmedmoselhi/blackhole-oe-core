@@ -70,7 +70,6 @@ ENIGMA2_OPTIONAL = " \
 	enigma2-plugins \
 	picons-enigma2-meta \
 	packagegroup-openplugins \
-	dvb-usb-drivers-meta \
 	cdfs cdtextinfo \
 	meta-enigma2-dvdburn \
 	${@base_contains("MACHINE_FEATURES", "hbbtv", "enigma2-plugin-extensions-hbbtv", "", d)} \
