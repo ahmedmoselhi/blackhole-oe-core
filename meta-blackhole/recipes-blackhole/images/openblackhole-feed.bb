@@ -73,6 +73,7 @@ ENIGMA2_OPTIONAL = " \
 	dvb-usb-drivers-meta \
 	cdfs cdtextinfo \
 	meta-enigma2-dvdburn \
+	${@base_contains("MACHINE_FEATURES", "hbbtv", "enigma2-plugin-extensions-hbbtv", "", d)} \
 	${OPTIONAL_BSP_ENIGMA2_PACKAGES} \
 	"
 
