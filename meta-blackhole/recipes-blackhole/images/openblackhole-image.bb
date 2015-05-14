@@ -84,6 +84,8 @@ DVB_USB_DRIVERS = " \
 	enigma2-plugin-drivers-dvb-usb-dtt200u \
 	enigma2-plugin-drivers-dvb-usb-rtl2832 \
 	kernel-module-dvb-usb-v2 \
+	${@base_contains('PREFERRED_VERSION_linux-vuplus', '3.13.5', 'kernel-module-cypress-firmware', '', d)} \
+	${@base_contains('PREFERRED_VERSION_linux-vuplus', '3.9.6', 'kernel-module-dvb-usb-cypress-firmware', '', d)} \
 	"
 
 IMAGE_INSTALL += " \
