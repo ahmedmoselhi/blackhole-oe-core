@@ -90,7 +90,7 @@ IMAGE_INSTALL += " \
 	${@base_contains("MACHINE_FEATURES", "transcoding", "streamproxy", "", d)} \
 	${@base_contains('MACHINE_FEATURES', 'ctrlrc', "enigma2-plugin-systemplugins-remotecontrolcode", "", d)} \
 	${KERNEL_WIFI_DRIVERS} \
-	$EXTRA_KERNEL_WIFI_DRIVERS \
+	${EXTRA_KERNEL_WIFI_DRIVERS} \
 	${EXTERNAL_WIFI_DRIVERS} \
 	dvb-usb-drivers-meta \
 	kernel-module-dvb-usb-v2 \
