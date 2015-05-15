@@ -100,6 +100,7 @@ IMAGE_INSTALL += " \
 	settings-autorestore \
 	tuxbox-common \
 	ntfs-3g \
+	libcrypto-compat \
 	${ENIGMA2_PLUGINS} \
 	\
 	${@base_contains("MACHINE_FEATURES", "tpm", "tpmd", "", d)} \
