@@ -58,3 +58,4 @@ BOOTLOGO_FILENAME = "splash_cfe_auto.bin"
 
 require conf/machine/include/tune-mips32.inc
 
+MACHINE_KERNEL_PR = "r1"
