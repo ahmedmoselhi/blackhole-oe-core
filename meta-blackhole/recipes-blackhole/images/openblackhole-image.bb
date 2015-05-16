@@ -54,7 +54,6 @@ ENIGMA2_PLUGINS = " \
 	enigma2-plugin-systemplugins-skinselector \
 	enigma2-plugin-systemplugins-softwaremanager \
 	enigma2-plugin-systemplugins-videomode \
-	enigma2-plugin-systemplugins-videotune \
 	enigma2-plugin-systemplugins-autoresolution \
   	enigma2-plugin-systemplugins-commoninterfaceassignment \	
 	enigma2-plugin-systemplugins-osd3dsetup \

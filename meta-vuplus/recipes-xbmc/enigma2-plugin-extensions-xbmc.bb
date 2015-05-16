@@ -5,7 +5,7 @@ require conf/license/license-close.inc
 PKG_DATE="20141219.0_beta"
 
 PV="1.1"
-PR="${PKG_DATE}_r1"
+PR="${PKG_DATE}_r2"
 
 DEPENDS += "enigma2 virtual/xbmc"
 RDEPENDS_${PN} += "virtual/xbmc"
