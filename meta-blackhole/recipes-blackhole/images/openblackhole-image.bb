@@ -105,11 +105,8 @@ IMAGE_INSTALL += " \
 	${@base_contains("MACHINE_FEATURES", "tpm", "tpmd", "", d)} \
 	${@base_contains("MACHINE_FEATURES", "transcoding", "streamproxy", "", d)} \
 	${@base_contains('MACHINE_FEATURES', 'ctrlrc', "enigma2-plugin-systemplugins-remotecontrolcode", "", d)} \
-	\
-	${DVB_USB_DRIVERS} \
-	\
 	${KERNEL_WIFI_DRIVERS} \
-	${EXTERNAL_WIFI_DRIVERS} \
+	${DVB_USB_DRIVERS} \
 	\
 	${@base_contains('MACHINE_FEATURES', 'dvd', 'cdfs cdtextinfo kernel-module-isofs kernel-module-udf', '', d)} \
 	python-argparse \
