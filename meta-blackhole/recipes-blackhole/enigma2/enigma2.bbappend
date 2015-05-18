@@ -1,6 +1,6 @@
 FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 
-PR .= "-bh6"
+PR .= "-bh7"
 
 ENIGMA2_BRANCH = "master"
 
