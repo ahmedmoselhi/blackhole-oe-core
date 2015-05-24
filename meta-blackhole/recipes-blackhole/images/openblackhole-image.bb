@@ -94,7 +94,6 @@ IMAGE_INSTALL += " \
 	parted \
 	enigma2 \
 	libavahi-client \
-	settings-autorestore \
 	tuxbox-common \
 	ntfs-3g \
 	libcrypto-compat \
