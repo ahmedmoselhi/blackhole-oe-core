@@ -1,6 +1,5 @@
 require ${OPENPLI_BASE}/meta-openpli/recipes-openpli/images/openpli-image.bb
 
-
 WIFI_FIRMWARES = "\
 	firmware-htc7010 \
 	firmware-htc9271 \
@@ -28,10 +27,14 @@ KERNEL_WIFI_MODULES = " \
 	kernel-module-hostap \
 	kernel-module-rt2800usb \
 "
+
 LEGACY_MODULES = " \
 	rt3070 \
 	r8192cu \
+	rtl8812au \
+	rtl8188eu \
 "
+
 ENIGMA2_PLUGINS = " \
 	enigma2-plugin-systemplugins-crossepg \
 	enigma2-plugin-extensions-dlnabrowser \
@@ -68,6 +71,7 @@ ENIGMA2_PLUGINS = " \
 	${@base_conditional("MACHINE", "vusolose", "enigma2-plugin-extensions-hbbtv", "", d)} \
   	${@base_conditional("MACHINE", "vuzero", "enigma2-plugin-extensions-hbbtv", "", d)} \
 	"
+
 DVB_USB_DRIVERS = " \
 	enigma2-plugin-drivers-dvb-usb-dib0700 \
 	enigma2-plugin-drivers-dvb-usb-af9015 \
@@ -112,12 +116,8 @@ IMAGE_INSTALL += " \
 	python-argparse \
 	"
 
-
-
-
 ENIGMA2_PLUGINS += " \
 	enigma2-plugin-systemplugins-crossepg \
 	"
-
 
 export IMAGE_BASENAME = "openblackhole"
