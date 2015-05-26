@@ -96,6 +96,7 @@ IMAGE_INSTALL += " \
 	libavahi-client \
 	tuxbox-common \
 	ntfs-3g \
+	bhfullbackup \
 	libcrypto-compat \
 	${ENIGMA2_PLUGINS} \
 	\

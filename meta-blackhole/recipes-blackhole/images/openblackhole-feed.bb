@@ -29,9 +29,7 @@ OPTIONAL_PACKAGES += " \
 	iperf \
 	joe \
 	mpd \
-	mtd-utils \
 	nano \
-	ntfs-3g \
 	ntp \
 	ofgwrite \
 	openresolv \
