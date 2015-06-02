@@ -25,7 +25,7 @@ BBLAYERS ?= \
 	$(CURDIR)/meta-blackhole \
 	$(CURDIR)/meta-openpli \
 	$(CURDIR)/meta-dream \
-	$(CURDIR)/meta-vuplus \
+	$(CURDIR)/meta-vuplus-bh \
 	$(CURDIR)/meta-xp \
 	$(CURDIR)/meta-xtrend \
 	$(CURDIR)/meta-formuler \
