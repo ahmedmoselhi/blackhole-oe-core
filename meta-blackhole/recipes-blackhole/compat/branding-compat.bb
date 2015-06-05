@@ -53,12 +53,14 @@ do_configure_prepend() {
 	DRIVERSDATE='N/A'
 }
 
-
+do_install_append() {
+	install -d ${D}/usr/lib/python2.7
+	ln -s /usr/lib/enigma2/python/boxbranding.so ${D}/usr/lib/python2.7/boxbranding.so
+}
 
 # FILES_${PN}-src = "${libdir}/enigma2/python/Components/*.py"
 # ${libdir}/enigma2/python/Components/*.pyo
-FILES_${PN} = "${libdir}/enigma2/python/*.so /usr/share ${libdir}/enigma2/python/Plugins"
-FILES_${PN}-dev += "${libdir}/enigma2/python/*.la"
+FILES_${PN}-dev += "${libdir}/enigma2/python/*.la /usr/lib/python2.7/*.so"
 FILES_${PN}-staticdev += "${libdir}/enigma2/python/*.a"
 FILES_${PN}-dbg += "${libdir}/enigma2/python/.debug"
-
+FILES_${PN} = "${libdir}/enigma2/python/*.so /usr/lib/python2.7/boxbranding.so"

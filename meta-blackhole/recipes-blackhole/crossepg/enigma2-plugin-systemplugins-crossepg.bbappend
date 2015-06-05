@@ -1,9 +1,11 @@
 DEPENDS += "libxml2 zlib python swig-native curl"
+RDEPENDS_${PN} += "branding-compat"
+
 
 PV = "0.8.1+gitr${SRCPV}"
 PKGV = "0.8.1+gitr${GITPKGV}"
 PR = "r2"
-PR .= "-bh0"
+PR .= "-bh2"
 PRINC = "0"
 
 FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
@@ -12,7 +14,6 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 # tag=${SRC_REV}
 
 SRC_URI = "git://github.com/oe-alliance/e2openplugin-CrossEPG.git;protocol=git \
-		   file://boxbranding.py \
 		file://skyit_hotbird_13.0.conf"
 
 # Dunno why, but it sometime fails to build in parallel
@@ -28,8 +29,6 @@ do_compile() {
 
 do_install() {
 	oe_runmake 'D=${D}' install
-	install -d ${D}/usr/lib/python2.7
-	install -m 0644 ${WORKDIR}/boxbranding.py ${D}/usr/lib/python2.7/boxbranding.py
 	install -m 0644 ${WORKDIR}/skyit_hotbird_13.0.conf ${D}/usr/crossepg/providers/skyit_hotbird_13.0.conf
 }
 
