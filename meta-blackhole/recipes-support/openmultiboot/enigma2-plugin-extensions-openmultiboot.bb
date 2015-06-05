@@ -9,7 +9,7 @@ inherit gitpkgv pythonnative
 SRCREV = "${AUTOREV}"
 PV = "1.0+git${SRCPV}"
 PKGV = "1.0+git${GITPKGV}"
-PR = "r4"
+PR = "r5"
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
 SRC_URI = "git://github.com/oe-alliance/openmultibootmanager.git;protocol=git"
@@ -19,7 +19,7 @@ inherit autotools-brokensep
 
 DEPENDS = "python"
 
-RDEPENDS_${PN} = "kernel-module-nandsim openmultiboot"
+RDEPENDS_${PN} = "kernel-module-nandsim openmultiboot branding-compat"
 
 RDEPENDS_${PN}_gb800solo = "kernel-module-block2mtd openmultiboot"
 RDEPENDS_${PN}_dm800 = "kernel-module-block2mtd openmultiboot unjffs2"

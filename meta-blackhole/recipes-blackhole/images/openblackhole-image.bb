@@ -61,6 +61,7 @@ ENIGMA2_PLUGINS = " \
 	enigma2-plugin-systemplugins-hdmicec \
 	enigma2-plugin-systemplugins-osdpositionsetup \
 	enigma2-plugin-systemplugins-wirelesslan \
+	enigma2-plugin-extensions-openmultiboot \
 	${@base_contains("MACHINE_FEATURES", "dvb-c", "enigma2-plugin-systemplugins-cablescan" , "", d)} \
 	${@base_contains("MACHINE_FEATURES", "uianimation", "enigma2-plugin-systemplugins-animationsetup" , "", d)} \
 	${@base_contains("MACHINE_FEATURES", "blindscan-dvbs", "enigma2-plugin-systemplugins-vuplusblindscan", "", d)} \
