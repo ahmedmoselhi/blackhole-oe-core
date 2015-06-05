@@ -1,0 +1,44 @@
+From b62b4639b42eb5c81240309949448007f2ea0831 Mon Sep 17 00:00:00 2001
+From: meo <lupomeo@hotmail.com>
+Date: Thu, 4 Jun 2015 22:08:11 +0200
+Subject: [PATCH 1/2] patch
+
+---
+ BoxBranding/Makefile.am |    4 ----
+ 1 file changed, 4 deletions(-)
+
+diff --git a/BoxBranding/Makefile.am b/BoxBranding/Makefile.am
+index e3d1db2..fb485b3 100644
+--- a/BoxBranding/Makefile.am
++++ b/BoxBranding/Makefile.am
+@@ -1,6 +1,2 @@
+ SUBDIRS = lib remotes
+ 
+-installdir = /usr/lib/enigma2/python/Components
+-
+-install_PYTHON = *.py
+-
+-- 
+1.7.9.5
+
+
+From cf0829a2c16122589e669ea92ff588bc97ce41a6 Mon Sep 17 00:00:00 2001
+From: meo <lupomeo@hotmail.com>
+Date: Thu, 4 Jun 2015 22:41:58 +0200
+Subject: [PATCH 2/2] remove remotes
+
+---
+ BoxBranding/Makefile.am |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/BoxBranding/Makefile.am b/BoxBranding/Makefile.am
+index fb485b3..8afceff 100644
+--- a/BoxBranding/Makefile.am
++++ b/BoxBranding/Makefile.am
+@@ -1,2 +1,2 @@
+-SUBDIRS = lib remotes
++SUBDIRS = lib 
+ 
+-- 
+1.7.9.5
+
