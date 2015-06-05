@@ -25,7 +25,7 @@
 	url = https://github.com/Xtrend-Official/meta-xtrend.git
 [submodule "meta-vuplus"]
 	path = meta-vuplus
-	url = http://github.com/vu-plus/meta-vuplus.git
+	url = https://github.com/vu-plus/meta-vuplus.git
 [submodule "meta-xp"]
 	path = meta-xp
 	url = https://github.com/XP-Master/meta-xp.git
