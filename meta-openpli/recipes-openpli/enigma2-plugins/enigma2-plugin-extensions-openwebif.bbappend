@@ -18,7 +18,7 @@ python do_package_prepend () {
         ('vuduo', 'duo.jpg', 'vu_normal.png'),
         ('vusolo', 'solo.jpg', 'vu_normal.png'),
         ('vusolo2', 'solo2.jpg', 'vu_normal.png'),
-        ('vuduo2', 'duo2.jpg', 'vu_normal.png'),
+        ('vuduo2', 'duo2.jpg', 'vu_duo2.png'),
         ('vuultimo', 'ultimo.jpg', 'vu_ultimo.png'),
         ('vuuno', 'uno.jpg', 'vu_normal.png'),
         ('hd2400', 'hd2400.jpg', 'hd2400.png'),
