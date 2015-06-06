@@ -12,7 +12,7 @@ PACKAGES += " ${PN}-src"
 SRCREV = "${AUTOREV}"
 PV = "2.3+git${SRCPV}"
 PKGV = "2.3+git${GITPKGV}"
-PR = "r${DATETIME}"
+PR = "r21"
 
 MACHINEBUILD = "${MACHINE}"
 
