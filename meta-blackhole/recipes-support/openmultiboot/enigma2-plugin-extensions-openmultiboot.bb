@@ -21,7 +21,7 @@ inherit autotools-brokensep
 
 DEPENDS = "python"
 
-RDEPENDS_${PN} = "kernel-module-nandsim openmultiboot branding-compat"
+RDEPENDS_${PN} = "kernel-module-nandsim openmultiboot branding-compat python-subprocess"
 
 RDEPENDS_${PN}_gb800solo = "kernel-module-block2mtd openmultiboot"
 RDEPENDS_${PN}_dm800 = "kernel-module-block2mtd openmultiboot unjffs2"
