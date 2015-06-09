@@ -14,7 +14,9 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
 
 DEPENDS = "freetype ${@base_contains("BRAND_OEM", "fulan", "fulan-dvb-modules" , "", d)}"
 
-SRC_URI = "git://github.com/oe-alliance/openmultiboot.git;protocol=git"
+SRC_URI = "git://github.com/oe-alliance/openmultiboot.git;protocol=git \
+		file://disable_lcd.patch \		
+	"
 
 inherit autotools-brokensep pkgconfig
 

@@ -1,6 +1,11 @@
 FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 
-PR .= "-bh8"
+PR .= "-bh9"
+
+RDEPENDS_${PN} += " \
+		bhfullbackup \
+		enigma2-plugin-extensions-openmultiboot \	
+	"
 
 ENIGMA2_BRANCH = "master"
 
