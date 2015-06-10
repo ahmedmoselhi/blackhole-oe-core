@@ -90,6 +90,7 @@ DVB_USB_DRIVERS = " \
 	"
 
 IMAGE_INSTALL += " \
+	3rd-party-feed-configs \
 	aio-grab \
 	blackhole-base \
 	blackholesocker \
