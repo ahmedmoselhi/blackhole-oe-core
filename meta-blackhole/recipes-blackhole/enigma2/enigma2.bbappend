@@ -4,12 +4,12 @@ PR .= "-bh9"
 
 RDEPENDS_${PN} += " \
 		bhfullbackup \
-		enigma2-plugin-extensions-openmultiboot \	
+		enigma2-plugin-extensions-openmultiboot \
 	"
 
 ENIGMA2_BRANCH = "master"
 
-SRC_URI = "git://git@git.blackhole-community.net/~/repos/bh/openblackhole-enigma2.git;protocol=ssh;branch=${ENIGMA2_BRANCH} \
+SRC_URI = "git://git.vuplus-community.net/openblackhole/openblackhole-enigma2.git;protocol=http;branch=${ENIGMA2_BRANCH} \
 			file://skindefault.tgz \
 			"
 
