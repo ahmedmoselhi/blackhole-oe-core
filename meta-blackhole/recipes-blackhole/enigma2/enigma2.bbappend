@@ -9,7 +9,7 @@ RDEPENDS_${PN} += " \
 
 ENIGMA2_BRANCH = "master"
 
-SRC_URI = "git://git.vuplus-community.net/openblackhole/openblackhole-enigma2.git;protocol=http;branch=${ENIGMA2_BRANCH} \
+SRC_URI = "git://git.vuplus-community.net/git/openblackhole/openblackhole-enigma2.git;protocol=http;branch=${ENIGMA2_BRANCH} \
 			file://skindefault.tgz \
 			"
 
