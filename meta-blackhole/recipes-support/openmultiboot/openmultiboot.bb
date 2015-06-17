@@ -9,14 +9,12 @@ inherit gitpkgv
 SRCREV = "${AUTOREV}"
 PV = "1.0+git${SRCPV}"
 PKGV = "1.0+git${GITPKGV}"
-PR = "r5"
+PR = "r7"
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
 DEPENDS = "freetype ${@base_contains("BRAND_OEM", "fulan", "fulan-dvb-modules" , "", d)}"
 
-SRC_URI = "git://github.com/oe-alliance/openmultiboot.git;protocol=git \
-		file://disable_lcd.patch \		
-	"
+SRC_URI = "git://git.vuplus-community.net/git/openblackhole/openmultiboot.git;protocol=http"
 
 inherit autotools-brokensep pkgconfig
 
@@ -53,10 +51,6 @@ else
 fi
 }
 
-pkg_postinst_${PN}() {
-rm /sbin/init
-ln -s /sbin/open_multiboot /sbin/init
-}
 
 pkg_postrm_${PN}() {
 rm /sbin/init

@@ -9,12 +9,11 @@ inherit gitpkgv pythonnative
 SRCREV = "${AUTOREV}"
 PV = "1.0+git${SRCPV}"
 PKGV = "1.0+git${GITPKGV}"
-PR = "r7"
+PR = "r8"
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
-SRC_URI = "git://github.com/oe-alliance/openmultibootmanager.git;protocol=git \
-			file://bh_hack.patch \		
-	"
+SRC_URI = "git://git.vuplus-community.net/git/openblackhole/openmultibootmanager.git;protocol=http"
+
 S = "${WORKDIR}/git"
 
 inherit autotools-brokensep
