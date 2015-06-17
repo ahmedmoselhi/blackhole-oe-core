@@ -1,6 +1,6 @@
 FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 
-PR .= "-bh9"
+PR .= "-bh10"
 
 RDEPENDS_${PN} += " \
 		bhfullbackup \
