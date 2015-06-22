@@ -12,7 +12,7 @@ SRC_URI = "file://Ncam_Ci.sh file://StartBhCam file://Delete_all_Crashlogs.sh fi
 	file://delite.key file://server.crt file://server.key \
 	file://Netstat.sh file://Uptime.sh file://inadyn file://inadyn_script.sh"
 
-PR = "r5"
+PR = "r6"
 
 FILES_${PN} = "/"
 
@@ -59,7 +59,7 @@ do_install() {
 	done
 	
 	install -d ${D}/etc/rc3.d
-	ln -s /etc/init.d/openvpn ${D}/etc/rc3.d/S40openvpn
+	ln -sf /etc/init.d/openvpn ${D}/etc/rc3.d/S40openvpn
 	ln -s /usr/bin/inadyn_script.sh ${D}/etc/rc3.d/S40inadyn
 
 	install -d ${D}/etc/rc4.d
