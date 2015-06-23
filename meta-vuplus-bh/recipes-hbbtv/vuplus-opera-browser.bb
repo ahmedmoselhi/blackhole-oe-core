@@ -8,13 +8,13 @@ RREPLACES_${PN} = "vuplus-opera-browser-util"
 RCONFLICTS_${PN} = "vuplus-opera-browser-util"
 PACKAGES = "${PN}"
 
-SRC_DATE = "20150106_0"
+SRC_DATE = "20150622_0"
 PR = "r1_${SRC_DATE}"
 
 SRC_URI = ""
 SRC_FILE = "opera-hbbtv_${SRC_DATE}.tar.gz"
-SRC_URI[md5sum] = "531bb6c69f682b04b563a17160773014"
-SRC_URI[sha256sum] = "3f8f885b3679db592acd09120dc8f29911bf34ac811df41e6abb87440e394b94"
+SRC_URI[md5sum] = "3dbefb3fce773077fd3604c4666f0c3e"
+SRC_URI[sha256sum] = "909dd2f98d322b46a97d298e0dc0ab54a47538a791be3bf40ef9314df0f0aa44"
 
 S = "${WORKDIR}/opera-hbbtv"
 
