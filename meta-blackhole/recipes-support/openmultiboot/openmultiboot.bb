@@ -9,7 +9,7 @@ inherit gitpkgv
 SRCREV = "${AUTOREV}"
 PV = "1.1+git${SRCPV}"
 PKGV = "1.1+git${GITPKGV}"
-PR = "r9"
+PR = "r10"
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
 DEPENDS = "freetype ${@base_contains("BRAND_OEM", "fulan", "fulan-dvb-modules" , "", d)}"
