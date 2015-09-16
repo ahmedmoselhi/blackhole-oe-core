@@ -13,7 +13,7 @@ DEPENDS = " \
 	gst-plugins-base gstreamer \
 	hotplug-e2-helper \
 	jpeg \
-	libdreamdvd libdvbsi++ libfribidi libmad libpng libsigc++-1.2 giflib libxml2 libxmlccwrap \
+	libdreamdvd libdvbsi++ libfribidi libmad libpng libsigc++-1.2 giflib libxml2 \
 	openssl \
 	python python-imaging python-twisted python-wifi \
 	swig-native \
@@ -153,7 +153,8 @@ PV = "2.7+git${SRCPV}"
 PKGV = "2.7+git${GITPKGV}"
 
 ENIGMA2_BRANCH ?= "master"
-SRC_URI = "git://git.code.sf.net/p/openpli/enigma2;protocol=git;branch=${ENIGMA2_BRANCH}"
+GITHUB_URI ?= "git://github.com"
+SRC_URI = "${GITHUB_URI}/OpenPLi/${BPN}.git;branch=${ENIGMA2_BRANCH}"
 
 S = "${WORKDIR}/git"
 
