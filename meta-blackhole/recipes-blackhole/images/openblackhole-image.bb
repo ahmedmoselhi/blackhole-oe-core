@@ -104,7 +104,6 @@ IMAGE_INSTALL += " \
 	libcrypto-compat \
 	${ENIGMA2_PLUGINS} \
 	\
-	${@base_contains("MACHINE_FEATURES", "tpm", "tpmd", "", d)} \
 	${@base_contains("MACHINE_FEATURES", "transcoding", "streamproxy", "", d)} \
 	${@base_contains('MACHINE_FEATURES', 'ctrlrc', "enigma2-plugin-systemplugins-remotecontrolcode", "", d)} \
 	${WIFI_FIRMWARES} \

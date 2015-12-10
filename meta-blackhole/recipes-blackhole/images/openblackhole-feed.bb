@@ -59,8 +59,6 @@ OPTIONAL_BSP_ENIGMA2_PACKAGES ?= ""
 ENIGMA2_OPTIONAL = " \
 	channelsettings-enigma2-meta \
 	enigma2-plugin-drivers-usbserial \
-	enigma2-plugin-extensions-ambx \
-	enigma2-plugin-extensions-tuxcom \
 	enigma2-plugin-extensions-xmltvimport \
 	enigma2-plugin-extensions-modifyplifullhd \
 	enigma2-plugin-security-firewall \
