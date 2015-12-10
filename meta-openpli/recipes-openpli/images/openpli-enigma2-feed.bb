@@ -33,9 +33,11 @@ OPTIONAL_PACKAGES += " \
 	iperf \
 	joe \
 	mc \
+	minisatip \
 	mpd \
 	mtd-utils \
 	nano \
+	net-tools \
 	ntfs-3g \
 	ntp \
 	ofgwrite \
@@ -50,6 +52,7 @@ OPTIONAL_PACKAGES += " \
 	rsync \
 	rtorrent \
 	sabnzbd \
+	satipclient \
 	sshpass \
 	smartmontools \
 	smbnetfs \
