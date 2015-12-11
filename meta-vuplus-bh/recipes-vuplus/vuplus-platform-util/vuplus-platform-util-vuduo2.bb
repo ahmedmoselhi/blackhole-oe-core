@@ -1,0 +1,9 @@
+require vuplus-platform-util.inc
+
+COMPATIBLE_MACHINE = "^(vuduo2)$"
+
+SRCDATE = "20151201"
+SRCDATE_PR = "r0"
+
+SRC_URI[md5sum] = "36cc6ffc4568821f818ac920910847af"
+SRC_URI[sha256sum] = "af79721aec5e47a4fb16944337c118816de4ec91557764a3573653e940d4a368"
