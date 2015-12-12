@@ -6,12 +6,6 @@ RDEPENDS_${PN} = "ncurses"
 LICENSE = "CLOSED"
 require conf/license/license-close.inc
 
-PACKAGES = "vuplus-blindscan-dvbs-utils-${MACHINE} vuplus-blindscan-dvbc-utils-${MACHINE}"
-
-PROVIDES += "virtual/blindscan-dvbs virtual/blindscan-dvbc"
-RPROVIDES_vuplus-blindscan-dvbs-utils-${MACHINE} += "virtual/blindscan-dvbs"
-RPROVIDES_vuplus-blindscan-dvbc-utils-${MACHINE} += "virtual/blindscan-dvbc"
-
 PV = "3.8"
 PV_arm = "4.0"
 
