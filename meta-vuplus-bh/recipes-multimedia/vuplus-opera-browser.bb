@@ -9,7 +9,7 @@ RCONFLICTS_${PN} = "vuplus-opera-browser-util"
 PACKAGES = "${PN}"
 
 SRC_DATE = "20150622_0"
-PR = "r1_${SRC_DATE}"
+PR = "r2_${SRC_DATE}"
 
 SRC_URI = ""
 SRC_FILE = "opera-hbbtv_${SRC_DATE}.tar.gz"
@@ -41,6 +41,15 @@ do_install() {
 
 	install -d ${D}/usr/lib
 	cp -avR ${S}/dfb/usr/lib/* ${D}/usr/lib/
+}
+
+do_install_append() {
+	GST_REQUIRED_VERSION=$(pkg-config --list-all | grep gstreamer-[0-9].* | awk -F "-| " '{print $2}')
+	GST_VERSION=$(pkg-config --modversion "gstreamer-$GST_REQUIRED_VERSION >= $GST_REQUIRED_VERSION")
+	mv ${D}/usr/local/hbb-browser/root/jsplugins/ooif-gst-$GST_VERSION.so ${D}/usr/local/hbb-browser/root/jsplugins/ooif.so
+	rm -f ${D}/usr/local/hbb-browser/root/jsplugins/ooif-gst*.so
+	mv ${D}/usr/local/hbb-browser/root/video/videobackend-gst-$GST_VERSION.so ${D}/usr/local/hbb-browser/root/video/videobackend.so
+	rm -f ${D}/usr/local/hbb-browser/root/video/videobackend-gst*.so
 }
 
 do_package_qa() {
