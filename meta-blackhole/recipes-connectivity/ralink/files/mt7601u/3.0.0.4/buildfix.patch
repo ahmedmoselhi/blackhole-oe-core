@@ -1,0 +1,33 @@
+*** DPO_MT7601U_LinuxSTA_3.0.0.4_20130913/os/linux/rt_linux.c	2013-09-12 07:27:14.000000000 +0200
+--- DPO_MT7601U_LinuxSTA_3.0.0.4_20130913/os/linux/rt_linux.c	2015-10-26 12:48:52.274526198 +0100
+*************** static inline void __RtmpOSFSInfoChange(
+*** 1117,1122 ****
+--- 1117,1125 ----
+  		pOSFSInfo->fsuid = current->fsuid;
+  		pOSFSInfo->fsgid = current->fsgid;
+  		current->fsuid = current->fsgid = 0;
++ #elif LINUX_VERSION_CODE > KERNEL_VERSION(3,14,0)
++ 		pOSFSInfo->fsuid = current_fsuid().val;
++ 		pOSFSInfo->fsgid = current_fsgid().val;
+  #else
+  		pOSFSInfo->fsuid = current_fsuid();
+  		pOSFSInfo->fsgid = current_fsgid();
+*** DPO_MT7601U_LinuxSTA_3.0.0.4_20130913/sta/sta_cfg.c	2013-09-12 07:27:14.000000000 +0200
+--- DPO_MT7601U_LinuxSTA_3.0.0.4_20130913/sta/sta_cfg.c	2015-10-26 12:49:18.274525821 +0100
+*************** VOID RTMPIoctlShow(
+*** 5763,5769 ****
+              wrq->u.data.length = strlen(extra) + 1; /* 1: size of '\0' */
+              break;
+          case SHOW_DRVIER_VERION:
+!             snprintf(extra, size, "Driver version-%s, %s %s\n", STA_DRIVER_VERSION, __DATE__, __TIME__ );
+              wrq->u.data.length = strlen(extra) + 1; /* 1: size of '\0' */
+              break;
+  #ifdef DOT11_N_SUPPORT
+--- 5763,5769 ----
+              wrq->u.data.length = strlen(extra) + 1; /* 1: size of '\0' */
+              break;
+          case SHOW_DRVIER_VERION:
+!             snprintf(extra, size, "Driver version-%s\n", STA_DRIVER_VERSION );
+              wrq->u.data.length = strlen(extra) + 1; /* 1: size of '\0' */
+              break;
+  #ifdef DOT11_N_SUPPORT

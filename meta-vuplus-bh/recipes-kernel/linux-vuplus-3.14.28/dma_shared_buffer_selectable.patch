@@ -1,0 +1,11 @@
+--- a/drivers/base/Kconfig	2014-10-28 14:45:22.000000000 +0100
++++ b/drivers/base/Kconfig	2014-07-15 02:30:01.000000000 +0200
+@@ -191,7 +191,7 @@
+ source "drivers/base/regmap/Kconfig"
+ 
+ config DMA_SHARED_BUFFER
+-	bool
++	bool "DMA Shared Buffer"
+ 	default n
+ 	select ANON_INODES
+ 	help

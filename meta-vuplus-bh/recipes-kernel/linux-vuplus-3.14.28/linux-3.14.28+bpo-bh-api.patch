@@ -1,0 +1,587 @@
+diff -u -N -r linux-3.13.5.orig/drivers/media/Kconfig linux-3.13.5/drivers/media/Kconfig
+--- linux-3.13.5.orig/drivers/media/Kconfig	2014-07-19 23:43:02.000000000 +0200
++++ linux-3.13.5/drivers/media/Kconfig	2014-05-26 19:08:04.000000000 +0200
+@@ -15,6 +15,8 @@
+ 
+ comment "Multimedia core support"
+ 
++source "drivers/media/bh-api/Kconfig"
++
+ #
+ # Multimedia support - automatically enable V4L2 and DVB core
+ #
+diff -u -N -r linux-3.13.5.orig/drivers/media/Makefile linux-3.13.5/drivers/media/Makefile
+--- linux-3.13.5.orig/drivers/media/Makefile	2014-07-19 23:43:26.000000000 +0200
++++ linux-3.13.5/drivers/media/Makefile	2014-05-26 19:08:04.000000000 +0200
+@@ -30,4 +30,5 @@
+ 
+ obj-y += common/ platform/ pci/ usb/ mmc/ firewire/ parport/
+ obj-$(CONFIG_VIDEO_DEV) += radio/
++obj-$(CONFIG_BH_API)    += bh-api/
+ 
+diff -u -N -r linux-3.13.5.orig/drivers/media/bh-api/Kconfig linux-3.13.5/drivers/media/bh-api/Kconfig
+--- linux-3.13.5.orig/drivers/media/bh-api/Kconfig	1970-01-01 01:00:00.000000000 +0100
++++ linux-3.13.5/drivers/media/bh-api/Kconfig	2011-05-07 16:09:57.000000000 +0200
+@@ -0,0 +1,3 @@
++config BH_API
++	tristate "Black Hole API"
++
+diff -u -N -r linux-3.13.5.orig/drivers/media/bh-api/Makefile linux-3.13.5/drivers/media/bh-api/Makefile
+--- linux-3.13.5.orig/drivers/media/bh-api/Makefile	1970-01-01 01:00:00.000000000 +0100
++++ linux-3.13.5/drivers/media/bh-api/Makefile	2011-05-07 16:09:38.000000000 +0200
+@@ -0,0 +1,7 @@
++#
++# Makefile for the Black Hole api.
++#
++
++bh-api-objs := bh_api_core.o
++
++obj-$(CONFIG_BH_API) += bh-api.o
+diff -u -N -r linux-3.13.5.orig/drivers/media/bh-api/bh_version.h linux-3.13.5/drivers/media/bh-api/bh_version.h
+--- linux-3.13.5.orig/drivers/media/bh-api/bh_version.h	1970-01-01 01:00:00.000000000 +0100
++++ linux-3.13.5/drivers/media/bh-api/bh_version.h	2011-05-07 16:15:06.000000000 +0200
+@@ -0,0 +1,6 @@
++#ifndef _BH_VERSION_H_
++#define _BH_VERSION_H_
++
++#define BH_API_VERSION "1.6.8"
++
++#endif /* _BH_VERSION_H_ */
+diff -u -N -r linux-3.13.5.orig/drivers/media/bh-api/bh_api_core.h linux-3.13.5/drivers/media/bh-api/bh_api_core.h
+--- linux-3.13.5.orig/drivers/media/bh-api/bh_api_core.h	2011-05-07 16:19:55.000000000 +0200
++++ linux-3.13.5/drivers/media/bh-api/bh_api_core.h	2011-05-07 16:18:02.000000000 +0200
+@@ -0,0 +1,91 @@
++
++#include <linux/fs.h>
++#ifndef _BH_API_CORE_H_
++#define _BH_API_CORE_H_
++
++extern int bh_api_debug;
++static struct class *bh_class;
++#define dprintk(var, level, args...) \
++	    do { if ((var & level)) printk(args); } while (0)
++
++#define deb_info(args...) dprintk(bh_api_debug, 0x01, args)
++
++
++#if defined(CONFIG_BH_API) || \
++        (defined(CONFIG_BH_API_MODULE) && defined(MODULE))
++
++extern int de_api_check (void);
++extern int de_api_call (void);
++
++extern int bh_api_check (void);
++extern int bh_api_call (void);
++/*
++ *  Prototypes - this would normally go in a .h file
++ */
++extern int device_open(struct inode *, struct file *);
++extern int device_release(struct inode *, struct file *);
++extern ssize_t device_read(struct file *, char *, size_t, loff_t *);
++extern ssize_t device_write(struct file *, const char *, size_t, loff_t *);
++extern int device_ioctl(struct inode *inode, struct file *file,         unsigned int ioctl_num, unsigned long ioctl_param);
++
++static int version_proc_show(struct seq_file *m, void *v);
++static int version_proc_open(struct inode *inode, struct file *file);
++static int jiffies_proc_show(struct seq_file *m, void *v);
++static int jiffies_proc_open(struct inode *inode, struct file *file);
++static int foobar_proc_show(struct seq_file *m, void *v);
++static int foobar_proc_open(struct inode *inode, struct file *file);
++
++#define SUCCESS 0
++#define DEVICE_NAME "bh"       /* Dev name as it appears in /proc/devices   */
++#define DEVICE_FILE_NAME "blackhole"
++#define IOCTL_GET_NTH_BYTE _IOWR(MAJOR_NUM, 2, int)
++#define IOCTL_GET_MSG _IOR(MAJOR_NUM, 1, char *)
++#define IOCTL_SET_MSG _IOR(MAJOR_NUM, 0, char *)
++#define MAJOR_NUM 214
++#define BUF_LEN 80             /* Max length of the message from the device */
++
++/*
++ * Global variables are declared as static, so are global within the file.
++ */
++
++static char msg[BUF_LEN];      /* The msg the device will give when asked */
++static char *msg_Ptr;
++
++static struct file_operations fops = {
++       .read = device_read,
++       .write = device_write,
++       .open = device_open,
++//	.ioctl = device_ioctl,
++       .release = device_release
++};
++
++
++#else
++
++static inline int de_api_check (void)
++{
++        printk(KERN_WARNING "%s: driver disabled by Kconfig\n", __func__);
++        return NULL;
++}
++
++static inline int de_api_call (void)
++{
++        printk(KERN_WARNING "%s: driver disabled by Kconfig\n", __func__);
++        return NULL;
++}
++
++static inline int bh_api_check (void)
++{
++        printk(KERN_WARNING "%s: driver disabled by Kconfig\n", __func__);
++        return NULL;
++}
++
++static inline int bh_api_call (void)
++{
++        printk(KERN_WARNING "%s: driver disabled by Kconfig\n", __func__);
++        return NULL;
++}
++
++#endif /* CONFIG_BH_API */
++
++#endif /* _BH_API_CORE_H_ */
+diff -u -N -r linux-3.13.5.orig/drivers/media/bh-api/bh_api_core.c linux-3.13.5/drivers/media/bh-api/bh_api_core.c
+--- linux-3.13.5.orig/drivers/media/bh-api/bh_api_core.c	2011-05-07 16:19:55.000000000 +0200
++++ linux-3.13.5/drivers/media/bh-api/bh_api_core.c	2011-05-07 16:18:02.000000000 +0200
+@@ -0,0 +1,439 @@
++#include <linux/kernel.h>
++#include <linux/module.h>
++#include <linux/moduleparam.h>
++#include <linux/init.h>
++#include <linux/delay.h>
++#include <linux/string.h>
++#include <linux/slab.h>
++#include <linux/firmware.h>
++
++#include <linux/dvb/frontend.h>
++#include <linux/device.h>
++#include <linux/proc_fs.h>
++#include <linux/sched.h>
++#include <asm/uaccess.h>
++#include <linux/seq_file.h>
++
++#include "bh_version.h"
++#include "bh_api_core.h"
++//#include "compat.h"
++#include <linux/fs.h>
++
++#define MODULE_NAME "blackhole"
++#define BH_API_NAME "Blackhole"
++#define FOOBAR_LEN 8
++
++int bh_api_debug;
++int bh_major;
++struct fb_data_t {
++	char name[FOOBAR_LEN + 1];
++	char value[FOOBAR_LEN + 1];
++};
++
++
++static const struct file_operations version_proc_fops = {
++       .open           = version_proc_open,
++       .read           = seq_read,
++       .llseek         = seq_lseek,
++       .release        = seq_release,
++};
++
++static const struct file_operations jiffies_proc_fops = {
++       .open           = jiffies_proc_open,
++       .read           = seq_read,
++       .llseek         = seq_lseek,
++       .release        = seq_release,
++};
++
++static const struct file_operations foobar_proc_fops = {
++       .open           = foobar_proc_open,
++       .read           = seq_read,
++       .llseek         = seq_lseek,
++       .release        = seq_release,
++};
++
++static struct proc_dir_entry *bh_dir, *foo_file,*bar_file, *version_file, *jiffies_file, *tty_device, *symlink;
++
++struct fb_data_t foo_data, bar_data;
++
++
++static int version_proc_show(struct seq_file *m, void *v)
++{
++	seq_printf(m, "%s\n", BH_API_VERSION);
++	return 0;
++}
++
++static int version_proc_open(struct inode *inode, struct file *file)
++{
++	return single_open(file, version_proc_show, PDE_DATA(inode));
++}
++
++static int jiffies_proc_show(struct seq_file *m, void *v)
++{
++	seq_printf(m, "jiffies = %ld\n", jiffies);
++	return 0;
++}
++
++
++static int jiffies_proc_open(struct inode *inode, struct file *file)
++{
++	return single_open(file, jiffies_proc_show, PDE_DATA(inode));
++}
++
++static int foobar_proc_show(struct seq_file *m, void *v)
++{
++	seq_printf(m, "jiffies = %ld\n", jiffies);
++	return 0;
++}
++
++static int foobar_proc_open(struct inode *inode, struct file *file)
++{
++	return single_open(file, foobar_proc_show, PDE_DATA(inode));
++}
++
++static int proc_write_foobar(struct file *file, const char *buffer, unsigned long count, void *data)
++{
++	int len;
++	struct fb_data_t *fb_data = (struct fb_data_t *)data;
++		if(count > FOOBAR_LEN)
++		len = FOOBAR_LEN;
++	else
++		len = count;
++	if(copy_from_user(fb_data->value, buffer, len)) {
++				return -EFAULT;
++	}
++	fb_data->value[len] = '\0';
++	return len;
++}
++
++/* CHAR DEVICE METHODS --- START */
++/*
++ * Is the device open right now? Used to prevent
++ * concurent access into the same device
++ */
++static int Device_Open = 0;
++
++/*
++ * The message the device will give when asked
++ */
++static char Message[BUF_LEN];
++
++/*
++ * How far did the process reading the message get?
++ * Useful if the message is larger than the size of the
++ * buffer we get to fill in device_read.
++ */
++static char *Message_Ptr;
++
++/*
++ * This is called whenever a process attempts to open the device file
++ */
++int device_open(struct inode *inode, struct file *file)
++{
++       /*
++        * We don't want to talk to two processes at the same time
++        */
++       if (Device_Open)
++               return -EBUSY;
++
++       Device_Open++;
++       /*
++        * Initialize the message
++        */
++       Message_Ptr = Message;
++       try_module_get(THIS_MODULE);
++       return SUCCESS;
++}
++
++int device_release(struct inode *inode, struct file *file)
++{
++       /*
++        * We're now ready for our next caller
++        */
++       Device_Open--;
++
++       module_put(THIS_MODULE);
++       return SUCCESS;
++}
++
++/*
++ * This function is called whenever a process which has already opened the
++ * device file attempts to read from it.
++ */
++ssize_t device_read(struct file *file, /* see include/linux/fs.h   */
++                          char __user * buffer,        /* buffer to be
++                                                        * filled with data */
++                          size_t length,       /* length of the buffer     */
++                          loff_t * offset)
++{
++       /*
++        * Number of bytes actually written to the buffer
++        */
++       int bytes_read = 0;
++
++       /*
++        * If we're at the end of the message, return 0
++        * (which signifies end of file)
++        */
++       if (*Message_Ptr == 0)
++               return 0;
++
++       /*
++        * Actually put the data into the buffer
++        */
++       while (length && *Message_Ptr) {
++
++               /*
++                * Because the buffer is in the user data segment,
++                * not the kernel data segment, assignment wouldn't
++                * work. Instead, we have to use put_user which
++                * copies data from the kernel data segment to the
++                * user data segment.
++                */
++               put_user(*(Message_Ptr++), buffer++);
++               length--;
++               bytes_read++;
++       }
++
++       /*
++        * Read functions are supposed to return the number
++        * of bytes actually inserted into the buffer
++        */
++       return bytes_read;
++}
++
++/*
++ * This function is called when somebody tries to
++ * write into our device file.
++ */
++ssize_t
++device_write(struct file *file,
++            const char __user * buffer, size_t length, loff_t * offset)
++{
++       int i;
++
++       for (i = 0; i < length && i < BUF_LEN; i++)
++               get_user(Message[i], buffer + i);
++
++       Message_Ptr = Message;
++
++       /*
++        * Again, return the number of input characters used
++        */
++       return i;
++}
++/*
++ * This function is called whenever a process tries to do an ioctl on our
++ * device file. We get two extra parameters (additional to the inode and file
++ * structures, which all device functions get): the number of the ioctl called
++ * and the parameter given to the ioctl function.
++ *
++ * If the ioctl is write or read/write (meaning output is returned to the
++ * calling process), the ioctl call returns the output of this function.
++ *
++ */
++int device_ioctl(struct inode *inode,  /* see include/linux/fs.h */
++                struct file *file,     /* ditto */
++                unsigned int ioctl_num,        /* number and param for ioctl */
++                unsigned long ioctl_param)
++{
++       int i;
++       char *temp;
++       char ch;
++
++       /*
++        * Switch according to the ioctl called
++        */
++       switch (ioctl_num) {
++       case IOCTL_SET_MSG:
++               /*
++                * Receive a pointer to a message (in user space) and set that
++                * to be the device's message.  Get the parameter given to
++                * ioctl by the process.
++                */
++               temp = (char *)ioctl_param;
++
++               /*
++                * Find the length of the message
++                */
++               get_user(ch, temp);
++               for (i = 0; ch && i < BUF_LEN; i++, temp++)
++                       get_user(ch, temp);
++
++               device_write(file, (char *)ioctl_param, i, 0);
++               break;
++
++       case IOCTL_GET_MSG:
++               /*
++                * Give the current message to the calling process -
++                * the parameter we got is a pointer, fill it.
++                */
++               i = device_read(file, (char *)ioctl_param, 99, 0);
++
++               /*
++                * Put a zero at the end of the buffer, so it will be
++                * properly terminated
++                */
++               put_user('\0', (char *)ioctl_param + i);
++
++               break;
++
++       case IOCTL_GET_NTH_BYTE:
++               /*
++                * This ioctl is both input (ioctl_param) and
++                * output (the return value of this function)
++                */
++               return ioctl_param;
++               break;
++       }
++
++       return SUCCESS;
++}
++/* CHAR DEVICE METHODS --- END */
++
++static int __init bh_api_init(void)
++{
++       bh_major = register_chrdev(MAJOR_NUM, DEVICE_NAME, &fops);
++	struct device *bh_dev;
++       if (bh_major < 0) {
++               printk(KERN_ALERT "%s failed with %d\n",
++                      "Sorry, registering the character device ", bh_major);
++               return bh_major;
++       } else {
++		printk(KERN_INFO "%s success with %d\n",
++			"Success! Registering the characther device ", bh_major);
++	}
++	bh_class = class_create(THIS_MODULE,DEVICE_NAME);
++	bh_dev = device_create(bh_class, NULL, MKDEV(MAJOR_NUM,0),NULL,DEVICE_FILE_NAME);	
++	int rv = 0;
++	/* create directory */
++	bh_dir = proc_mkdir(MODULE_NAME, NULL);
++	if(bh_dir == NULL) {
++		printk(KERN_ALERT "Error while creating %s directory\n", MODULE_NAME);
++		rv = -ENOMEM;
++		goto out;
++	}
++
++//	bh_dir->owner = THIS_MODULE;
++
++	/* create version using convenience function */
++	version_file = proc_create_data("version", 0444, bh_dir, &version_proc_fops, NULL);
++	if(version_file == NULL) {
++		rv = -ENOMEM;
++		goto no_version;
++	}
++//	version_file->owner = THIS_MODULE;
++
++	/* create jiffies using convenience function */
++	//jiffies_file = proc_create_data("jiffies", 0444, bh_dir, proc_read_jiffies, NULL);
++	//if(jiffies_file == NULL) {
++	//	rv = -ENOMEM;
++	//	goto no_jiffies;
++	//}
++	//jiffies_file->owner = THIS_MODULE;
++
++	/* create foo and bar files using same callback
++	* functions
++	*/
++	//foo_file = create_proc_entry("foo", 0644, bh_dir);
++	//if(foo_file == NULL) {
++	//	rv = -ENOMEM;
++	//	goto no_foo;
++	//}
++	//strcpy(foo_data.name, "foo");
++	//strcpy(foo_data.value, "foo");
++	//foo_file->data = &foo_data;
++	//foo_file->read_proc = proc_read_foobar;
++	//foo_file->write_proc = proc_write_foobar;
++	//foo_file->owner = THIS_MODULE;
++
++	//bar_file = create_proc_entry("bar", 0644, bh_dir);
++	//if(bar_file == NULL) {
++	//	rv = -ENOMEM;
++	//	goto no_bar;
++	//}
++	//strcpy(bar_data.name, "bar");
++	//strcpy(bar_data.value, "bar");
++	//bar_file->data = &bar_data;
++	//bar_file->read_proc = proc_read_foobar;
++	//bar_file->write_proc = proc_write_foobar;
++	//bar_file->owner = THIS_MODULE;
++	/* create tty device */
++	//tty_device = proc_mknod("tty", S_IFCHR | 0666, bh_dir, MKDEV(5, 0));
++	//if(tty_device == NULL) {
++	//	rv = -ENOMEM;
++	//	goto no_tty;
++	//}
++	//tty_device->owner = THIS_MODULE;
++	/* create symlink */
++	//symlink = proc_symlink("jiffies_too", bh_dir, "jiffies");
++	//if(symlink == NULL) {
++	//	rv = -ENOMEM;
++	//	goto no_symlink;
++	//}
++	//symlink->owner = THIS_MODULE;
++	/* everything OK */
++	printk(KERN_INFO "%s initialised\n", MODULE_NAME);
++	return 0;
++//no_symlink:
++//	remove_proc_entry("tty", bh_dir);
++//no_tty:
++	remove_proc_entry("bar", bh_dir);
++//no_bar:
++	//remove_proc_entry("foo", bh_dir);
++//no_foo:
++	//remove_proc_entry("jiffies", bh_dir);
++//no_jiffies:
++	//remove_proc_entry("version", bh_dir);
++no_version:
++	remove_proc_entry(MODULE_NAME, NULL);
++out:
++	return rv;
++}
++
++int de_api_check (void) {
++       deb_info("de_api_init: Initializing BlackHole communication api");
++	return 0;
++}
++EXPORT_SYMBOL(de_api_check);
++
++int bh_api_check (void) {
++       deb_info("bh_api_init: Initializing BlackHole communication api");
++	return 0;
++}
++EXPORT_SYMBOL(bh_api_check);
++
++int de_api_call (void) {
++	return 0;
++}
++EXPORT_SYMBOL(de_api_call);
++
++int bh_api_call (void) {
++	return 0;
++}
++EXPORT_SYMBOL(bh_api_call);
++
++static void __exit bh_api_cleanup(void)
++{
++//	remove_proc_entry("jiffies_too", bh_dir);
++//	remove_proc_entry("tty", bh_dir);
++//	remove_proc_entry("bar", bh_dir);
++//	remove_proc_entry("foo", bh_dir);
++//	remove_proc_entry("jiffies", bh_dir);
++	device_destroy(bh_class,MKDEV(MAJOR_NUM,0));
++	class_unregister(bh_class);
++	class_destroy(bh_class);
++	unregister_chrdev(MAJOR_NUM, DEVICE_NAME);
++	remove_proc_entry("version", bh_dir);
++	remove_proc_entry(MODULE_NAME, NULL);
++	printk(KERN_INFO "%s removed\n", MODULE_NAME);
++}
++
++module_init(bh_api_init);
++module_exit(bh_api_cleanup);
++
++module_param_named(debug, bh_api_debug, int, 0644);
++MODULE_PARM_DESC(debug, "Turn on/off frontend debugging (default:off).");
++
++MODULE_AUTHOR("dpeddi <dpeddi@users.sourceforge.net>");
++MODULE_DESCRIPTION("BlackHole Api Core module");

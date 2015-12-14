@@ -5,6 +5,7 @@ PR .= "-bh12"
 RDEPENDS_${PN} += " \
 		bhfullbackup \
 		enigma2-plugin-extensions-openmultiboot \
+		${@base_contains("MACHINE_FEATURES", "omb", "enigma2-plugin-extensions-openmultiboot" , "", d)} \
 		enigma2-plugin-extensions-xmltvimport \
 		enigma2-plugin-extensions-epgsearch \
 		enigma2-plugin-extensions-epgimportfilter \

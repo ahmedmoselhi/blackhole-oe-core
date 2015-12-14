@@ -70,6 +70,7 @@ ENIGMA2_PLUGINS = " \
 	${@base_conditional("MACHINE", "vuduo2", "enigma2-plugin-extensions-hbbtv", "", d)} \
 	${@base_conditional("MACHINE", "vusolose", "enigma2-plugin-extensions-hbbtv", "", d)} \
   	${@base_conditional("MACHINE", "vuzero", "enigma2-plugin-extensions-hbbtv", "", d)} \
+  	${@base_conditional("MACHINE", "vusolo4k", "enigma2-plugin-extensions-hbbtv", "", d)} \
 	"
 
 DVB_USB_DRIVERS = " \
@@ -94,6 +95,7 @@ IMAGE_INSTALL += " \
 	aio-grab \
 	blackhole-base \
 	blackholesocker \
+	inadyn \
 	mc \
 	openvpn \
 	parted \

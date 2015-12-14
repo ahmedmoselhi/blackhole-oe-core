@@ -26,6 +26,7 @@ SRC_URI_append_vusolo2 = "file://splash_cfe_auto2.bin"
 SRC_URI_append_vuduo2 = "file://splash_cfe_auto2.bin"
 SRC_URI_append_vusolose = "file://splash_cfe_auto2.bin"
 SRC_URI_append_vuzero = "file://splash_cfe_auto2.bin"
+SRC_URI_append_vusolo4k = "file://splash_cfe_auto2.bin"
 
 
 BINARY_VERSION = "1.3"

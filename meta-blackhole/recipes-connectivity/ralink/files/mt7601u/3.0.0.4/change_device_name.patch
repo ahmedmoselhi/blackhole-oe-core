@@ -1,0 +1,65 @@
+diff -u -N -r DPO_MT7601U_LinuxSTA_3.0.0.4_20130913.orig/common/cmm_wpa.c DPO_MT7601U_LinuxSTA_3.0.0.4_20130913/common/cmm_wpa.c
+--- DPO_MT7601U_LinuxSTA_3.0.0.4_20130913.orig/common/cmm_wpa.c	2013-09-12 07:27:14.000000000 +0200
++++ DPO_MT7601U_LinuxSTA_3.0.0.4_20130913/common/cmm_wpa.c	2015-08-27 23:45:10.000000000 +0200
+@@ -4190,7 +4190,7 @@
+ 		pSharedKey->CipherAlg = CIPHER_AES;
+ 	else
+ 	{
+-		DBGPRINT(RT_DEBUG_ERROR, ("%s : fails (IF/ra%d) \n", 
++		DBGPRINT(RT_DEBUG_ERROR, ("%s : fails (IF/wlan%d) \n", 
+ 										__FUNCTION__, BssIdx));	
+ 		return;
+ 	}
+@@ -4202,7 +4202,7 @@
+ 		/* Sanity check the length */
+ 		if ((GtkLen != LEN_WEP64) && (GtkLen != LEN_WEP128))
+ 		{
+-			DBGPRINT(RT_DEBUG_ERROR, ("%s : (IF/ra%d) WEP key invlaid(%d) \n", 
++			DBGPRINT(RT_DEBUG_ERROR, ("%s : (IF/wlan%d) WEP key invlaid(%d) \n", 
+ 										__FUNCTION__, BssIdx, GtkLen));	
+ 			return;
+ 		}
+@@ -4215,7 +4215,7 @@
+ 		/* Sanity check the length */
+ 		if (GtkLen < LEN_TK)
+ 		{
+-			DBGPRINT(RT_DEBUG_ERROR, ("%s : (IF/ra%d) WPA key invlaid(%d) \n", 
++			DBGPRINT(RT_DEBUG_ERROR, ("%s : (IF/wlan%d) WPA key invlaid(%d) \n", 
+ 										__FUNCTION__, BssIdx, GtkLen));	
+ 			return;
+ 		}
+diff -u -N -r DPO_MT7601U_LinuxSTA_3.0.0.4_20130913.orig/include/rtmp_def.h DPO_MT7601U_LinuxSTA_3.0.0.4_20130913/include/rtmp_def.h
+--- DPO_MT7601U_LinuxSTA_3.0.0.4_20130913.orig/include/rtmp_def.h	2013-09-12 07:27:14.000000000 +0200
++++ DPO_MT7601U_LinuxSTA_3.0.0.4_20130913/include/rtmp_def.h	2015-08-27 23:45:52.000000000 +0200
+@@ -1601,8 +1601,8 @@
+ #define INF_MAIN_DEV_NAME		"wlan"
+ #define INF_MBSSID_DEV_NAME		"wlan"
+ #else
+-#define INF_MAIN_DEV_NAME		"ra"
+-#define INF_MBSSID_DEV_NAME		"ra"
++#define INF_MAIN_DEV_NAME		"wlan"
++#define INF_MBSSID_DEV_NAME		"wlan"
+ #endif /* ANDROID_SUPPORT */
+ #define INF_WDS_DEV_NAME		"wds"
+ #define INF_APCLI_DEV_NAME		"apcli"
+diff -u -N -r DPO_MT7601U_LinuxSTA_3.0.0.4_20130913.orig/os/linux/rt_profile.c DPO_MT7601U_LinuxSTA_3.0.0.4_20130913/os/linux/rt_profile.c
+--- DPO_MT7601U_LinuxSTA_3.0.0.4_20130913.orig/os/linux/rt_profile.c	2013-09-12 07:27:14.000000000 +0200
++++ DPO_MT7601U_LinuxSTA_3.0.0.4_20130913/os/linux/rt_profile.c	2015-08-27 23:45:10.000000000 +0200
+@@ -161,7 +161,7 @@
+ 		for (i = 0; i < pAd->ApCfg.BssidNum; i++)
+ 		{
+ 			pAd->ApCfg.MBSSID[i].Hostapd=FALSE;
+-			DBGPRINT(RT_DEBUG_TRACE, ("Reset ra%d hostapd support=FLASE", i));
++			DBGPRINT(RT_DEBUG_TRACE, ("Reset wlan%d hostapd support=FLASE", i));
+ 			
+ 		}
+ #endif /*HOSTAPD_SUPPORT */
+@@ -260,7 +260,7 @@
+ 		if (pAddr)
+ 			pBufPtr += sprintf(pBufPtr, "(RT2860) STA(%02x:%02x:%02x:%02x:%02x:%02x) ", PRINT_MAC(pAddr));				
+ 		else if (BssIdx < MAX_MBSSID_NUM(pAd))
+-			pBufPtr += sprintf(pBufPtr, "(RT2860) BSS(ra%d) ", BssIdx);
++			pBufPtr += sprintf(pBufPtr, "(RT2860) BSS(wlan%d) ", BssIdx);
+ 		else
+ 			pBufPtr += sprintf(pBufPtr, "(RT2860) ");
+ 

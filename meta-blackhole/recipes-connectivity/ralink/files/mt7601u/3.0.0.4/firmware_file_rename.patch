@@ -1,0 +1,59 @@
+diff -u -N -r DPO_MT7601U_LinuxSTA_3.0.0.4_20130913_orig/include/os/rt_drv.h DPO_MT7601U_LinuxSTA_3.0.0.4_20130913/include/os/rt_drv.h
+--- DPO_MT7601U_LinuxSTA_3.0.0.4_20130913_orig/include/os/rt_drv.h	2013-09-12 07:27:14.000000000 +0200
++++ DPO_MT7601U_LinuxSTA_3.0.0.4_20130913/include/os/rt_drv.h	2015-08-27 23:48:28.000000000 +0200
+@@ -56,10 +56,10 @@
+ #ifdef CONFIG_STA_SUPPORT
+ 
+ #ifdef RTMP_MAC_USB
+-#define STA_PROFILE_PATH			"/etc/Wireless/RT2870STA/RT2870STA.dat"
++#define STA_PROFILE_PATH			"/etc/Wireless/mt7601uSTA/mt7601uSTA.dat"
+ #define STA_DRIVER_VERSION			"3.0.0.3"
+ #ifdef MULTIPLE_CARD_SUPPORT
+-#define CARD_INFO_PATH			"/etc/Wireless/RT2870STA/RT2870STACard.dat"
++#define CARD_INFO_PATH			"/etc/Wireless/mt7601uSTA/mt7601uSTACard.dat"
+ #endif /* MULTIPLE_CARD_SUPPORT */
+ #endif /* RTMP_MAC_USB */
+ 
+@@ -977,7 +977,7 @@
+ #ifdef RTMP_MAC_USB
+ #ifdef CONFIG_STA_SUPPORT
+ #undef EEPROM_BIN_FILE_NAME /* Avoid APSTA mode re-define issue */
+-#define EEPROM_BIN_FILE_NAME  "/etc/Wireless/RT2870STA/e2p.bin"
++#define EEPROM_BIN_FILE_NAME  "/etc/Wireless/mt7601uSTA/e2p.bin"
+ #endif /* CONFIG_STA_SUPPORT */
+ #endif /* RTMP_MAC_USB */
+ 
+diff -u -N -r DPO_MT7601U_LinuxSTA_3.0.0.4_20130913_orig/include/os/rt_linux.h DPO_MT7601U_LinuxSTA_3.0.0.4_20130913/include/os/rt_linux.h
+--- DPO_MT7601U_LinuxSTA_3.0.0.4_20130913_orig/include/os/rt_linux.h	2013-09-12 07:27:14.000000000 +0200
++++ DPO_MT7601U_LinuxSTA_3.0.0.4_20130913/include/os/rt_linux.h	2015-08-27 23:48:28.000000000 +0200
+@@ -127,10 +127,10 @@
+ #ifdef CONFIG_STA_SUPPORT
+ 
+ #ifdef RTMP_MAC_USB
+-#define STA_PROFILE_PATH			"/etc/Wireless/RT2870STA/RT2870STA.dat"
++#define STA_PROFILE_PATH			"/etc/Wireless/mt7601uSTA/mt7601uSTA.dat"
+ #define STA_DRIVER_VERSION			"3.0.0.3"
+ #ifdef MULTIPLE_CARD_SUPPORT
+-#define CARD_INFO_PATH			"/etc/Wireless/RT2870STA/RT2870STACard.dat"
++#define CARD_INFO_PATH			"/etc/Wireless/mt7601uSTA/mt7601uSTACard.dat"
+ #endif /* MULTIPLE_CARD_SUPPORT */
+ #endif /* RTMP_MAC_USB */
+ 
+@@ -138,7 +138,7 @@
+ extern	const struct iw_handler_def rt28xx_iw_handler_def;
+ 
+ #ifdef SINGLE_SKU_V2
+-#define SINGLE_SKU_TABLE_FILE_NAME	"/etc/Wireless/RT2870STA/SingleSKU.dat"
++#define SINGLE_SKU_TABLE_FILE_NAME	"/etc/Wireless/mt7601uSTA/SingleSKU.dat"
+ #endif /* SINGLE_SKU_V2 */
+ 
+ #endif /* CONFIG_STA_SUPPORT */
+@@ -1529,7 +1529,7 @@
+ #ifdef RTMP_MAC_USB
+ #ifdef CONFIG_STA_SUPPORT
+ #undef EEPROM_BIN_FILE_NAME /* Avoid APSTA mode re-define issue */
+-#define EEPROM_BIN_FILE_NAME  "/etc/Wireless/RT2870STA/e2p.bin"
++#define EEPROM_BIN_FILE_NAME  "/etc/Wireless/mt7601uSTA/e2p.bin"
+ #endif /* CONFIG_STA_SUPPORT */
+ #endif /* RTMP_MAC_USB */
+ 
