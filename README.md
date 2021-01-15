@@ -3,7 +3,7 @@ MACHINE=.... make image
 
 build image in build folder:
 source ./bitbake.env
-MACHINE=... bitbake openblackhole-image
+MACHINE=spark bitbake blackhole-image
 
 build optional packages in the feed:
-MACHINE=... bitbake openblackhole feed
+MACHINE=spark bitbake blackhole feed

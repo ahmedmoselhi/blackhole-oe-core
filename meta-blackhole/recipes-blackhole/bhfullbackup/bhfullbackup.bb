@@ -1,6 +1,6 @@
 DESCRIPTION = "Black Hole Full Backup"
 MAINTAINER = "Meo <lupomeo@gmail.com>"
-require conf/license/openblackhole-gplv2.inc
+require conf/license/blackhole-gplv2.inc
 
 RDEPENDS_${PN} += "mtd-utils mtd-utils-ubifs enigma2"
 

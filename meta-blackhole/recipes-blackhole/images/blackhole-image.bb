@@ -56,7 +56,7 @@ ENIGMA2_PLUGINS = " \
 	enigma2-plugin-systemplugins-softwaremanager \
 	enigma2-plugin-systemplugins-videomode \
 	enigma2-plugin-systemplugins-autoresolution \
-  	enigma2-plugin-systemplugins-commoninterfaceassignment \	
+        enigma2-plugin-systemplugins-commoninterfaceassignment \	
 	enigma2-plugin-systemplugins-osd3dsetup \
 	enigma2-plugin-systemplugins-hdmicec \
 	enigma2-plugin-systemplugins-osdpositionsetup \
@@ -69,7 +69,7 @@ ENIGMA2_PLUGINS = " \
 	${@base_conditional("MACHINE", "vusolo2", "enigma2-plugin-extensions-hbbtv", "", d)} \
 	${@base_conditional("MACHINE", "vuduo2", "enigma2-plugin-extensions-hbbtv", "", d)} \
 	${@base_conditional("MACHINE", "vusolose", "enigma2-plugin-extensions-hbbtv", "", d)} \
-  	${@base_conditional("MACHINE", "vuzero", "enigma2-plugin-extensions-hbbtv", "", d)} \
+        ${@base_conditional("MACHINE", "vuzero", "enigma2-plugin-extensions-hbbtv", "", d)} \
 	"
 
 DVB_USB_DRIVERS = " \
@@ -121,4 +121,4 @@ ENIGMA2_PLUGINS += " \
 	enigma2-plugin-systemplugins-crossepg \
 	"
 
-export IMAGE_BASENAME = "openblackhole"
+export IMAGE_BASENAME = "blackhole"

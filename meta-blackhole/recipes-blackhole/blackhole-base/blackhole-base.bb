@@ -3,7 +3,7 @@ SECTION = "base"
 PRIORITY = "required"
 MAINTAINER = "Black Hole team"
 
-require conf/license/openblackhole-gplv2.inc
+require conf/license/blackhole-gplv2.inc
 
 SRC_URI = "file://Ncam_Ci.sh file://StartBhCam file://Delete_all_Crashlogs.sh file://Ifconfig.sh \
 	file://client.confOff file://clientp2p.confOff file://server.confOff \

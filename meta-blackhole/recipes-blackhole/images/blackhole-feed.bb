@@ -7,10 +7,10 @@
 require recipes-core/meta/package-index.bb
 
 # We have a GPLv2 license for this recipe...
-require conf/license/openblackhole-gplv2.inc
+require conf/license/blackhole-gplv2.inc
 
 # Depend on the image, so that it gets build
-DEPENDS = "openblackhole-image"
+DEPENDS = "blackhole-image"
 
 OPTIONAL_PACKAGES_BROKEN = "samba"
 OPTIONAL_PACKAGES ?= ""

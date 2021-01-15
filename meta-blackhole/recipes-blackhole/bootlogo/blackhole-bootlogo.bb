@@ -1,9 +1,9 @@
-DESCRIPTION = "Open Black Hole bootlogo"
+DESCRIPTION = "Black Hole bootlogo"
 SECTION = "base"
 PRIORITY = "required"
 MAINTAINER = "Black Hole team"
 
-require conf/license/openblackhole-gplv2.inc
+require conf/license/blackhole-gplv2.inc
 
 RDEPENDS_${PN} += "showiframe"
 

@@ -65,11 +65,11 @@ all: init
 	@echo
 	@echo " cd $(BUILD_DIR)"
 	@echo " source env.source"
-	@echo " MACHINE=... bitbake openblackhole-image"
+	@echo " MACHINE=... bitbake blackhole-image"
 	@echo
 	@echo "	or, if you want to build not just the image, but the optional packages in the feed as well:"
 	@echo
-	@echo " MACHINE=... bitbake openblackhole-feed"
+	@echo " MACHINE=... bitbake blackhole-feed"
 	@echo
 
 $(BBLAYERS):
@@ -81,7 +81,7 @@ init: $(BBLAYERS) $(CONFFILES)
 
 image: init
 	@echo 'Building image for $(MACHINE)'
-	@. $(TOPDIR)/env.source && cd $(TOPDIR) && bitbake openblackhole-image
+	@. $(TOPDIR)/env.source && cd $(TOPDIR) && bitbake blackhole-image
 
 update:
 	@echo 'Updating Git repositories...'

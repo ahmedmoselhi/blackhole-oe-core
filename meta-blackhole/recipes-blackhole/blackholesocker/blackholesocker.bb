@@ -3,7 +3,7 @@ SECTION = "base"
 PRIORITY = "required"
 MAINTAINER = "Black Hole team"
 
-require conf/license/openblackhole-gplv2.inc
+require conf/license/blackhole-gplv2.inc
 
 PR = "r0"
 PV = "0.1"
