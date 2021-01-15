@@ -14,15 +14,15 @@
 	path = meta-openpli/recipes-openpli/e2openplugins
 	url = git://github.com/E2OpenPlugins/e2openplugins.git
 	ignore = dirty
+[submodule "meta-fulan"]
+	path = meta-fulan
+	url = https://github.com/kueken/meta-fulan.git
 [submodule "meta-formuler"]
 	path = meta-formuler
 	url = https://github.com/formuler/meta-formuler.git
 [submodule "meta-hd"]
 	path = meta-hd
 	url = https://github.com/HD-Digital/meta-hd.git
-[submodule "meta-xtrend"]
-	path = meta-xtrend
-	url = https://github.com/Xtrend-Official/meta-xtrend.git
 [submodule "meta-vuplus"]
 	path = meta-vuplus
 	url = https://github.com/vu-plus/meta-vuplus.git
