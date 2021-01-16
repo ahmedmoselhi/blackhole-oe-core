@@ -83,6 +83,10 @@ image: init
 	@echo 'Building image for $(MACHINE)'
 	@. $(TOPDIR)/env.source && cd $(TOPDIR) && bitbake blackhole-image
 
+feed: init
+	@echo 'Building feed for $(MACHINE)'
+	@. $(TOPDIR)/env.source && cd $(TOPDIR) && bitbake blackhole-feed
+
 update:
 	@echo 'Updating Git repositories...'
 	@HASH=`$(XSUM) $(MAKEFILE_LIST)`; \
