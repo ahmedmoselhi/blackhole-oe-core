@@ -18,7 +18,7 @@ RDEPENDS_enigma2-plugin-extensions-fancontrol2 = "smartmontools hdparm"
 RDEPENDS_enigma2-plugin-systemplugins-blindscan = "vuplus-blindscan-utils"
 
 PROVIDES += "\
-	${@base_contains("MACHINE_FEATURES", "transcoding","enigma2-plugin-systemplugins-transcodingsetup","",d)} \
+	${@bb.utils.contains("MACHINE_FEATURES", "transcoding","enigma2-plugin-systemplugins-transcodingsetup","",d)} \
 "
 
 inherit gitpkgv pythonnative pkgconfig
@@ -109,7 +109,7 @@ do_install_append() {
 	# remove unused .pyc files
 	find ${D}/usr/lib/enigma2/python/ -name '*.pyc' -exec rm {} \;
 	# remove leftover webinterface garbage
-	${@base_contains('MACHINE_FEATURES', 'tpm','','rm -rf ${D}/usr/lib/enigma2/python/Plugins/Extensions/WebInterface',d)}
+	${@bb.utils.contains('MACHINE_FEATURES', 'tpm','','rm -rf ${D}/usr/lib/enigma2/python/Plugins/Extensions/WebInterface',d)}
 }
 
 python populate_packages_prepend() {

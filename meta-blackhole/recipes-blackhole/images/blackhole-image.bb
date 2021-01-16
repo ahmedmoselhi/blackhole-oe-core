@@ -61,10 +61,10 @@ ENIGMA2_PLUGINS = " \
 	enigma2-plugin-systemplugins-hdmicec \
 	enigma2-plugin-systemplugins-osdpositionsetup \
 	enigma2-plugin-systemplugins-wirelesslan \
-	${@base_contains("MACHINE_FEATURES", "dvb-c", "enigma2-plugin-systemplugins-cablescan" , "", d)} \
-	${@base_contains("MACHINE_FEATURES", "uianimation", "enigma2-plugin-systemplugins-animationsetup" , "", d)} \
-	${@base_contains("MACHINE_FEATURES", "blindscan-dvbs", "enigma2-plugin-systemplugins-vuplusblindscan", "", d)} \
-	${@base_contains("MACHINE_FEATURES", "xbmc", "enigma2-plugin-extensions-xbmc", "", d)} \
+	${@bb.utils.contains("MACHINE_FEATURES", "dvb-c", "enigma2-plugin-systemplugins-cablescan" , "", d)} \
+	${@bb.utils.contains("MACHINE_FEATURES", "uianimation", "enigma2-plugin-systemplugins-animationsetup" , "", d)} \
+	${@bb.utils.contains("MACHINE_FEATURES", "blindscan-dvbs", "enigma2-plugin-systemplugins-vuplusblindscan", "", d)} \
+	${@bb.utils.contains("MACHINE_FEATURES", "xbmc", "enigma2-plugin-extensions-xbmc", "", d)} \
 	\
 	${@base_conditional("MACHINE", "vusolo2", "enigma2-plugin-extensions-hbbtv", "", d)} \
 	${@base_conditional("MACHINE", "vuduo2", "enigma2-plugin-extensions-hbbtv", "", d)} \
@@ -85,8 +85,8 @@ DVB_USB_DRIVERS = " \
 	enigma2-plugin-drivers-dvb-usb-dtt200u \
 	enigma2-plugin-drivers-dvb-usb-rtl2832 \
 	kernel-module-dvb-usb-v2 \
-	${@base_contains('PREFERRED_VERSION_linux-vuplus', '3.13.5', 'kernel-module-cypress-firmware', '', d)} \
-	${@base_contains('PREFERRED_VERSION_linux-vuplus', '3.9.6', 'kernel-module-dvb-usb-cypress-firmware', '', d)} \
+	${@bb.utils.contains('PREFERRED_VERSION_linux-vuplus', '3.13.5', 'kernel-module-cypress-firmware', '', d)} \
+	${@bb.utils.contains('PREFERRED_VERSION_linux-vuplus', '3.9.6', 'kernel-module-dvb-usb-cypress-firmware', '', d)} \
 	"
 
 IMAGE_INSTALL += " \
@@ -105,15 +105,15 @@ IMAGE_INSTALL += " \
 	libcrypto-compat \
 	${ENIGMA2_PLUGINS} \
 	\
-	${@base_contains("MACHINE_FEATURES", "transcoding", "streamproxy", "", d)} \
-	${@base_contains('MACHINE_FEATURES', 'ctrlrc', "enigma2-plugin-systemplugins-remotecontrolcode", "", d)} \
+	${@bb.utils.contains("MACHINE_FEATURES", "transcoding", "streamproxy", "", d)} \
+	${@bb.utils.contains('MACHINE_FEATURES', 'ctrlrc', "enigma2-plugin-systemplugins-remotecontrolcode", "", d)} \
 	${WIFI_FIRMWARES} \
 	${KERNEL_WIFI_MODULES} \
 	${LEGACY_MODULES} \
 	rt2870sta \
 	${DVB_USB_DRIVERS} \
 	\
-	${@base_contains('MACHINE_FEATURES', 'dvd', 'cdfs cdtextinfo kernel-module-isofs kernel-module-udf', '', d)} \
+	${@bb.utils.contains('MACHINE_FEATURES', 'dvd', 'cdfs cdtextinfo kernel-module-isofs kernel-module-udf', '', d)} \
 	python-argparse \
 	"
 

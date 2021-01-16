@@ -67,7 +67,7 @@ ENIGMA2_OPTIONAL = " \
 	packagegroup-openplugins \
 	cdfs cdtextinfo \
 	meta-enigma2-dvdburn \
-	${@base_contains("MACHINE_FEATURES", "hbbtv", "enigma2-plugin-extensions-hbbtv", "", d)} \
+	${@bb.utils.contains("MACHINE_FEATURES", "hbbtv", "enigma2-plugin-extensions-hbbtv", "", d)} \
 	${OPTIONAL_BSP_ENIGMA2_PACKAGES} \
 	"
 

@@ -2,7 +2,7 @@
 MACHINE_FEATURES_BACKFILL_CONSIDERED = "rtc"
 
 MACHINE_ESSENTIAL_EXTRA_RDEPENDS = " \
-	${@base_contains("MACHINE_FEATURES", "dvbproxy", "vuplus-dvb-proxy-${MACHINE} vuplus-libgles-${MACHINE} vuplus-platform-util-${MACHINE} libvugles2", "vuplus-dvb-modules-${MACHINE}", d)} \
+	${@bb.utils.contains("MACHINE_FEATURES", "dvbproxy", "vuplus-dvb-proxy-${MACHINE} vuplus-libgles-${MACHINE} vuplus-platform-util-${MACHINE} libvugles2", "vuplus-dvb-modules-${MACHINE}", d)} \
 	gst-ffmpeg \
 "
 
@@ -19,7 +19,7 @@ MACHINE_EXTRA_RRECOMMENDS = " \
 	vuplus-shutdown \
 	gst-plugin-dvbmediasink \
 	ntfs-3g \
-	${@base_contains("MACHINE_FEATURES", "minitv", "enigma2-plugin-extensions-minitv", "", d)} \
+	${@bb.utils.contains("MACHINE_FEATURES", "minitv", "enigma2-plugin-extensions-minitv", "", d)} \
 "
 
 include conf/machine/include/autoload-filesystems.inc
