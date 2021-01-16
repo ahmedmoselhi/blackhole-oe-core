@@ -26,7 +26,6 @@ BBLAYERS ?= \
 	$(CURDIR)/meta-openpli \
 	$(CURDIR)/meta-dream \
         $(CURDIR)/meta-fulan \
-	$(CURDIR)/meta-vuplus-bh \
 	$(CURDIR)/meta-xsarius \
 	$(CURDIR)/meta-xp \
 	$(CURDIR)/meta-formuler \
