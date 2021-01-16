@@ -1,6 +1,6 @@
 PR_append = "-vuplus0"
 
-THISDIR := "${@os.path.dirname(bb.data.getVar('FILE', d, True))}"
+THISDIR := "${@os.path.dirname(bb.data.d.getVar('FILE', d, True))}"
 FILESPATH =. "${@base_set_filespath(["${THISDIR}/${PN}"], d)}:"
 
 DEPENDS = "glib-2.0 pango atk jpeg libpng docbook-utils-native cairo gdk-pixbuf"

@@ -100,8 +100,8 @@ python populate_packages_prepend () {
                 bb.data.setVar('MAINTAINER_' + full_package, line[12:], d)
 
 
-    mydir = bb.data.getVar('D', d, 1) + "/../git/"
-    for package in bb.data.getVar('PACKAGES', d, 1).split():
+    mydir = bb.data.d.getVar('D', d, 1) + "/../git/"
+    for package in bb.data.d.getVar('PACKAGES', d, 1).split():
         getControlLines(mydir, d, package.split('-')[-1])
 }
 
